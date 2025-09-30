@@ -53,6 +53,7 @@ This front-end is designed for computational physics visualization, intuitive UI
 ---
 
 ## 📂 Project Structure (Simplified)
+
 ```
 triple-pendulum-front-end/
 │
@@ -100,3 +101,16 @@ triple-pendulum-front-end/
 └── vite.config.ts
 ```
 
+## 📦 Getting Started
+
+### 1. Install dependencies
+```bash
+npm install
+```
+
+### 2. Add your API URL
+Create a .env file in the project root:
+
+```ini
+VITE_API_URL=http://localhost:3000
+```

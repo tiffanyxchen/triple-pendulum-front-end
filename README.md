@@ -104,13 +104,25 @@ triple-pendulum-front-end/
 ## 📦 Getting Started
 
 ### 1. Install dependencies
+
 ```bash
 npm install
 ```
 
 ### 2. Add your API URL
+
 Create a .env file in the project root:
 
 ```ini
 VITE_API_URL=http://localhost:3000
 ```
+
+### 3. Start the development server
+
+Create a .env file in the project root:
+```
+bash
+npm run dev
+```
+Open the app at:
+👉 http://localhost:5173

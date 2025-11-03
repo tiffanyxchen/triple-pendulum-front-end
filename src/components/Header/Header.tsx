@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
 import SearchBar from '../../elements/SearchBar'
-import { Typography, colors } from '@mui/material'
+import { Typography } from '@mui/material'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -25,13 +25,15 @@ const UserAccountInfo = styled.div`
 
 export interface HeaderProps {
   userName: string
-  joinedDate: string
+  //oinedDate: string
   onSubmitSearch: (searchText: string) => void
 }
 
 const Header = (props: HeaderProps) => {
-  const { userName, joinedDate, onSubmitSearch } = props
-  const customerSinceYear = new Date(joinedDate).getFullYear()
+  const { userName, onSubmitSearch } = props
+  //const { userName, joinedDate, onSubmitSearch } = props
+
+  //const customerSinceYear = new Date(joinedDate).getFullYear()
 
   return (
     <StyledHeader aria-label="page-header">
@@ -40,9 +42,11 @@ const Header = (props: HeaderProps) => {
         <AccountCircleRoundedIcon />
         <UserAccountInfo>
           <Typography>{userName}</Typography>
+          {/* 
           <Typography color={colors.grey[700]} variant="body2">
             Customer since {customerSinceYear}
           </Typography>
+          */}
         </UserAccountInfo>
       </UserAccountContainer>
     </StyledHeader>

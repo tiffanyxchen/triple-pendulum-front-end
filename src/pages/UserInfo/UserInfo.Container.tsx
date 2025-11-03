@@ -6,13 +6,21 @@ import { useSnapshot } from 'valtio'
 
 import useUserInfo from './useUserInfo'
 import Header from '../../components/Header/Header'
-import {simulationStore} from './UserInfo.State'
-import {userStore} from './UserInfo.State'
+import { simulationStore } from './UserInfo.State'
+import { userStore } from './UserInfo.State'
 
 const Container = styled.div`
   border: 20px solid #808080;
   height: 100vh;
   width: 100%;
+  padding: 1rem;
+`
+
+const ResultCard = styled.div`
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 `
 
 const UserInfo = () => {
@@ -32,20 +40,22 @@ const UserInfo = () => {
 
   // Save API data into stores
   useEffect(() => {
-    if (orderData) simulationStore.results = orderData
+    if (orderData) {
+      // If backend returns raw array
+      simulationStore.results = Array.isArray(orderData)
+        ? orderData
+        : orderData.results ?? []
+    }
   }, [orderData])
 
   useEffect(() => {
     if (userData) userStore.user = userData
   }, [userData])
 
-  // Handle search bar callback
   const onSubmitSearch = (searchText: string) => {
-    console.log("Search for:", searchText)
-    // Add filtering or navigation here later
+    console.log('Search for:', searchText)
   }
 
-  // Top-level loading state
   if (userIsLoading || ordersAreLoading) {
     return (
       <Container>
@@ -54,34 +64,44 @@ const UserInfo = () => {
     )
   }
 
-  // Top-level errors
   if (userErrors || ordersErrors) {
     showBoundary(userErrors || ordersErrors)
     return null
   }
 
-  // If user hasn't loaded yet, avoid crash
   if (!userSnap.user) {
     return <Container>No user found</Container>
   }
 
   return (
     <Container>
-      <Header
-        userName={userSnap.user.name}
-        onSubmitSearch={onSubmitSearch}
-      />
+      <Header userName={userSnap.user.name} onSubmitSearch={onSubmitSearch} />
 
-      <div style={{ marginTop: "2rem" }}>
-        <h2>Saved Orders (or Results)</h2>
+      <div style={{ marginTop: '2rem' }}>
+        <h2>Saved Simulations</h2>
 
-        {ordersAreLoading ? (
-          <CircularProgress color="secondary" />
+        {orderSnap.results.length === 0 ? (
+          <p>No simulations found.</p>
         ) : (
-          orderSnap.results?.map((order) => (
-            <div key={order.id}>
-              Order #{order.id}
-            </div>
+          orderSnap.results.map((sim) => (
+            <ResultCard key={sim.id}>
+              <h3>{sim.name}</h3>
+              <p><strong>ID:</strong> {sim.id}</p>
+              <p><strong>Created:</strong> {sim.createdAt}</p>
+
+              {/* Handle missing GIF */}
+              {sim.gifPath ? (
+                <img
+                  src={sim.gifPath}
+                  alt={sim.name}
+                  style={{ width: '300px', height: 'auto', marginTop: '1rem' }}
+                />
+              ) : (
+                <p style={{ color: 'red', marginTop: '1rem' }}>
+                  The animation is not generated.
+                </p>
+              )}
+            </ResultCard>
           ))
         )}
       </div>
@@ -90,3 +110,4 @@ const UserInfo = () => {
 }
 
 export default UserInfo
+

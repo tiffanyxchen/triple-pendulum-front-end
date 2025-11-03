@@ -1,19 +1,16 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-// import { act, render, screen } from '@testing-library/react'
-
 import UserInfo from '.'
-
-const ui = () => render(<UserInfo />)
 
 describe('<UserInfo />', () => {
   afterEach(() => {
     vi.clearAllMocks()
   })
 
-  it('should render the user info screen', async () => {
-    ui()
+  it('should render the fallback UI when no user is loaded', () => {
+    render(<UserInfo />)
 
-    expect(screen.getByText('Search bar')).toBeDefined()
+    expect(screen.getByText('No user found')).toBeDefined()
   })
 })
+

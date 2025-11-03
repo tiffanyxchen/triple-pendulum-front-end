@@ -10,7 +10,7 @@ function useUserInfo() {
     queryKey: ['orderData'],
     queryFn: () =>
       axios
-        .get('${import.meta.env.VITE_API_URL}/vi/orders')
+        .get(`${import.meta.env.VITE_API_URL}/v1/orders`)
         .then((res) => res.data),
   })
 
@@ -22,7 +22,7 @@ function useUserInfo() {
     queryKey: ['userData'],
     queryFn: () =>
       axios
-        .get('${import.meta.env.VITE_API_URL}/v1/users')
+        .get(`${import.meta.env.VITE_API_URL}/v1/users`)
         .then((res) => res.data),
   })
 

@@ -1,4 +1,3 @@
-
 import { proxy } from 'valtio'
 
 export const SimulationStatus = {
@@ -7,7 +6,8 @@ export const SimulationStatus = {
   // OutOfStock: 'out_of_stock',
 } as const
 
-export type SimulationStatusKeys = (typeof SimulationStatus)[keyof typeof SimulationStatus]
+export type SimulationStatusKeys =
+  (typeof SimulationStatus)[keyof typeof SimulationStatus]
 
 export interface SimulationResult {
   id: string
@@ -17,7 +17,7 @@ export interface SimulationResult {
   theta3_init: number
   gifPath: string | null
   createdAt: string
-    status?: SimulationStatusKeys
+  status?: SimulationStatusKeys
 }
 
 export const simulationStore = proxy<{

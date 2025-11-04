@@ -44,7 +44,7 @@ const UserInfo = () => {
       // If backend returns raw array
       simulationStore.results = Array.isArray(orderData)
         ? orderData
-        : orderData.results ?? []
+        : (orderData.results ?? [])
     }
   }, [orderData])
 
@@ -86,8 +86,12 @@ const UserInfo = () => {
           orderSnap.results.map((sim) => (
             <ResultCard key={sim.id}>
               <h3>{sim.name}</h3>
-              <p><strong>ID:</strong> {sim.id}</p>
-              <p><strong>Created:</strong> {sim.createdAt}</p>
+              <p>
+                <strong>ID:</strong> {sim.id}
+              </p>
+              <p>
+                <strong>Created:</strong> {sim.createdAt}
+              </p>
 
               {/* Handle missing GIF */}
               {sim.gifPath ? (
@@ -110,4 +114,3 @@ const UserInfo = () => {
 }
 
 export default UserInfo
-

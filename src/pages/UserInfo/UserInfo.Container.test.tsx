@@ -13,4 +13,3 @@ describe('<UserInfo />', () => {
     expect(screen.getByText('No user found')).toBeDefined()
   })
 })
-

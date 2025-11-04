@@ -1,8 +1,9 @@
 import { proxy } from 'valtio'
+import type { SimulationResult } from '../UserInfo/UserInfo.State'
 
 export const simulateStore = proxy<{
-  resultA: any | null
-  resultB: any | null
+  resultA: SimulationResult | null
+  resultB: SimulationResult | null
   isLoading: boolean
 }>({
   resultA: null,

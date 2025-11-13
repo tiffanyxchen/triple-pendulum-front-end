@@ -25,6 +25,8 @@ It features a clean UI, interactive animations, and a flexible front-end archite
 ## 🚀 Getting Started
 
 ### 1. Clone the repo
+
 ```bash
 git clone https://github.com/tiffanyxchen/triple-pendulum-front-end.git
 cd triple-pendulum-front-end
+```

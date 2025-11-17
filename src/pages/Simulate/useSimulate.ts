@@ -27,12 +27,10 @@ export function useSimulate() {
 
       simulateStore.resultA = simA.data
       simulateStore.resultB = simB.data
-
     } catch (err) {
       const error = err as AxiosError
       console.error('Simulation error:', error.message)
       throw error
-
     } finally {
       simulateStore.isLoading = false
     }

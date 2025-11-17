@@ -14,4 +14,3 @@ export const simulateStore = proxy<{
   resultB: null,
   isLoading: false,
 })
-

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../axios.config'
 import { simulateStore } from './Simulate.State'
 import type { SimulationResult } from '../UserInfo/UserInfo.State'
 import type { AxiosError } from 'axios'
